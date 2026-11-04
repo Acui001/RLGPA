@@ -4,6 +4,10 @@ RLGPA is a decision-based black-box attack for generating sparse adversarial exa
 
 ## Overview
 
+![Overview of the RLGPA framework](image/frame.jpg)
+
+*Overview of RLGPA. The planner selects a policy-scale action from the current attack state, and PSSE performs hard-label-verified support restoration under the query budget.*
+
 The key idea of RLGPA is to formulate sparse support reduction as an online scheduling problem. Instead of assigning reinforcement-learning actions directly to image-dependent pixel indices, RLGPA defines stable policy-scale actions. These actions determine both the support-reduction strategy and the relative granularity used at the current attack stage.
 
 A masked Dueling Double DQN observes compact information about the current support, recent progress, remaining query budget, and action history. It then selects a policy-scale action for the Policy-Scale Support Executor (PSSE). PSSE constructs restoration groups from the current perturbation support, evaluates them through hard-label queries, and commits a restoration only when the resulting image remains adversarial. The observed support reduction and query cost are returned to the planner for online learning.
